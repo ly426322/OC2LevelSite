@@ -320,6 +320,96 @@
       "download_path": "levels/music_feast_v0.10.zip",
       "size": 47606304,
       "update_note": ""
+    },
+    {
+      "id": "fruit",
+      "level_id": "fruit",
+      "folder_name": "17.甜双脑袋 — fruit v2.0",
+      "name": "17.甜双脑袋 — fruit v2.0",
+      "version": "v2.0",
+      "download_path": "levels/fruit_v2.0.zip",
+      "size": 9811028,
+      "update_note": ""
+    },
+    {
+      "id": "duji",
+      "level_id": "duji",
+      "folder_name": "24.渡己 — duji v0.1",
+      "name": "24.渡己 — duji v0.1",
+      "version": "v0.1",
+      "download_path": "levels/duji_v0.1.zip",
+      "size": 307909,
+      "update_note": ""
+    },
+    {
+      "id": "jihuang",
+      "level_id": "jihuang",
+      "folder_name": "28.生的派大星 — 饥荒 v1.3",
+      "name": "28.生的派大星 — 饥荒 v1.3",
+      "version": "v1.3",
+      "download_path": "levels/jihuang_v1.3.zip",
+      "size": 25659235,
+      "update_note": ""
+    },
+    {
+      "id": "buji",
+      "level_id": "buji",
+      "folder_name": "29.不辑 v0.17",
+      "name": "29.不辑 v0.17",
+      "version": "v0.17",
+      "download_path": "levels/buji_v0.17.zip",
+      "size": 28554143,
+      "update_note": ""
+    },
+    {
+      "id": "xiaosongshu",
+      "level_id": "xiaosongshu",
+      "folder_name": "30.小松鼠 v0.1",
+      "name": "30.小松鼠 v0.1",
+      "version": "v0.1",
+      "download_path": "levels/xiaosongshu_v0.1.zip",
+      "size": 4431009,
+      "update_note": ""
+    },
+    {
+      "id": "yizhijuan",
+      "level_id": "yizhijuan",
+      "folder_name": "32.yizhijuan v0.2",
+      "name": "32.yizhijuan v0.2",
+      "version": "v0.2",
+      "download_path": "levels/yizhijuan_v0.2.zip",
+      "size": 130347,
+      "update_note": ""
+    },
+    {
+      "id": "meishifang",
+      "level_id": "meishifang",
+      "folder_name": "34.婵的美食坊 — V0.12",
+      "name": "34.婵的美食坊 — V0.12",
+      "version": "v0.12",
+      "download_path": "levels/meishifang_v0.12.zip",
+      "size": 8009510,
+      "update_note": ""
+    },
+    {
+      "id": "SHZ",
+      "level_id": "SHZ",
+      "folder_name": "9.阿俊 — SHZ霍格华芙 v0.3.10",
+      "name": "9.阿俊 — SHZ霍格华芙 v0.3.10",
+      "version": "v0.3.10",
+      "download_path": "levels/SHZ_v0.3.10.zip",
+      "size": 9322948,
+      "update_note": ""
+    },
+    {
+      "id": "roco",
+      "level_id": "roco",
+      "folder_name": "31.roco — 洛克王国 v0.1",
+      "name": "31.roco — 洛克王国 v0.1",
+      "version": "v0.1",
+      "download_path": "levels/roco_v0.1.zip",
+      "size": 18592761,
+      "update_note": ""
     }
   ]
 }
