@@ -1,6 +1,6 @@
 {
-  "version": "2.1",
-  "size": 57253683,
+  "version": "2.2",
+  "size": 60479291,
   "name": "OC2地图管理器.exe",
-  "update_note": "v2.0 新增关卡地图预览：点击关卡可查看关卡内全部地图缩略图"
+  "update_note": "v2.2 修复打包后地图预览失效（补充 UnityPy 解码依赖）"
 }
