@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>OC2 关卡在线站 · 胡闹厨房2 自制关卡</title>
+<style>
+  :root { --orange:#E4572E; --orange-dark:#C94A22; --bg:#F5F2ED; --card:#FFFFFF; --border:#E0DBD2; --text:#26211C; --muted:#8A7F72; --green:#3FA46C; }
+  * { margin:0; padding:0; box-sizing:border-box; }
+  body { font-family:"Microsoft YaHei UI","PingFang SC",sans-serif; background:var(--bg); color:var(--text); }
+  header { background:var(--orange); color:#fff; padding:26px 20px 22px; }
+  header h1 { font-size:26px; }
+  header p { opacity:.9; margin-top:6px; font-size:14px; }
+  .wrap { max-width:1080px; margin:0 auto; padding:20px; }
+  .card { background:var(--card); border:1px solid var(--border); border-radius:10px; padding:20px; margin-bottom:18px; }
+  .card h2 { font-size:17px; margin-bottom:12px; display:flex; align-items:center; gap:8px; }
+  .badge { display:inline-block; background:var(--orange); color:#fff; font-size:12px; padding:2px 10px; border-radius:20px; }
+  .btn { display:inline-block; background:var(--orange); color:#fff; text-decoration:none; font-size:15px; font-weight:600;
+         padding:10px 26px; border-radius:8px; border:none; cursor:pointer; transition:.15s; }
+  .btn:hover { background:var(--orange-dark); }
+  .btn.ghost { background:#fff; color:var(--text); border:1px solid var(--border); }
+  .info-row { display:flex; flex-wrap:wrap; gap:10px 26px; margin-top:10px; color:var(--muted); font-size:13px; }
+  .code { background:#1C1B1A; color:#E8E2D9; font-family:Consolas,monospace; font-size:13px; padding:2px 8px; border-radius:4px; user-select:all; }
+  table { width:100%; border-collapse:collapse; font-size:14px; }
+  th, td { text-align:left; padding:9px 10px; border-bottom:1px solid var(--border); }
+  th { color:var(--muted); font-weight:600; font-size:13px; }
+  tr:hover td { background:#FAF7F2; }
+  .name { font-weight:600; }
+  .ver { color:var(--muted); font-size:13px; }
+  .size { color:var(--muted); font-size:13px; }
+  .dl { color:var(--orange); text-decoration:none; font-weight:600; }
+  .dl:hover { text-decoration:underline; }
+  .steps { margin:10px 0 0 4px; }
+  .steps li { margin:8px 0 0 16px; font-size:14px; line-height:1.7; }
+  .footer { text-align:center; color:var(--muted); font-size:12px; padding:18px 0 30px; }
+  .loading { color:var(--muted); font-size:14px; }
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <h1>OC2 关卡在线站</h1>
+    <p>胡闹厨房2（Overcooked! 2）自制关卡集合 · 配合「OC2 地图管理器」一键在线安装 / 更新</p>
+  </div>
+</header>
+
+<div class="wrap">
+
+  <div class="card">
+    <h2><span class="badge">软件</span> OC2 地图管理器</h2>
+    <p style="font-size:14px;color:var(--muted);">
+      关卡管理 + 一键安装 + 前置联动 + 在线更新。下载后放到任意位置，双击运行，选择游戏目录即可使用。
+    </p>
+    <div style="margin-top:14px;">
+      <a class="btn" href="OC2地图管理器.exe" download>下载 OC2地图管理器.exe</a>
+    </div>
+    <div class="info-row">
+      <span>当前版本：<span id="sw-ver">—</span></span>
+      <span>在线更新地址：<span class="code" id="site-url">—</span></span>
+    </div>
+    <ol class="steps">
+      <li>下载并运行 <b>OC2地图管理器.exe</b>，点击「选择游戏目录」指向你的胡闹厨房2 安装目录</li>
+      <li>点击「检测环境」确认 BepInEx / OC2DIYLevel 就绪</li>
+      <li>工具栏点「在线更新」，站点地址保持默认（本页地址），点「检查更新」即可看到新关卡与更新</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h2><span class="badge">关卡库</span> 全部自制关卡（<span id="lv-count">—</span>）</h2>
+    <div id="list" class="loading">加载中…</div>
+  </div>
+
+  <div class="footer">
+    OC2 关卡在线站 · 自制关卡均来自各关卡作者，仅供学习交流使用
+  </div>
+</div>
+
+<script>
+const BASE = location.origin + location.pathname.replace(/[^/]*$/, '');
+document.getElementById('site-url').textContent = BASE.replace(/\/$/, '');
+
+fetch('api/levels.json').then(r => r.json()).then(data => {
+  const levels = (data.levels || []).slice().sort((a, b) => (a.name || '').localeCompare(b.name || '', 'zh'));
+  document.getElementById('lv-count').textContent = levels.length;
+  let html = '<table><tr><th>关卡</th><th>版本</th><th>大小</th><th>下载</th></tr>';
+  for (const lv of levels) {
+    const mb = (lv.size / 1048576).toFixed(1);
+    const url = BASE + lv.download_path;
+    html += `<tr><td class="name">${escapeHtml(lv.name)}</td><td class="ver">${escapeHtml(lv.version || '—')}</td><td class="size">${mb} MB</td><td><a class="dl" href="${url}" download>下载 zip</a></td></tr>`;
+  }
+  html += '</table>';
+  document.getElementById('list').innerHTML = html;
+}).catch(e => {
+  document.getElementById('list').innerHTML = '<span style="color:#D64545">关卡清单加载失败：' + escapeHtml(String(e)) + '</span>';
+});
+
+fetch('api/software.json').then(r => r.json()).then(d => {
+  document.getElementById('sw-ver').textContent = d.version || '—';
+}).catch(() => {});
+
+function escapeHtml(s) {
+  return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+}
+</script>
+</body>
+</html>
