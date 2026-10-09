@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>OC2 关卡在线站 · 胡闹厨房2 自制关卡</title>
+<title>OC2 关卡在线站</title>
 <style>
   :root { --orange:#E4572E; --orange-dark:#C94A22; --bg:#F5F2ED; --card:#FFFFFF; --border:#E0DBD2; --text:#26211C; --muted:#8A7F72; --green:#3FA46C; }
   * { margin:0; padding:0; box-sizing:border-box; }
@@ -34,9 +34,35 @@
   .steps li { margin:8px 0 0 16px; font-size:14px; line-height:1.7; }
   .footer { text-align:center; color:var(--muted); font-size:12px; padding:18px 0 30px; }
   .loading { color:var(--muted); font-size:14px; }
+
+  /* 授权门 */
+  #gate { position:fixed; inset:0; background:linear-gradient(160deg,#E4572E 0%,#B03A1A 60%,#7E2A12 100%);
+          display:flex; align-items:center; justify-content:center; z-index:999; }
+  #gate .box { background:#fff; border-radius:14px; padding:34px 38px; width:380px; max-width:90%;
+               box-shadow:0 18px 50px rgba(0,0,0,.35); text-align:center; }
+  #gate h1 { font-size:21px; color:var(--text); }
+  #gate p { font-size:13px; color:var(--muted); margin:8px 0 20px; }
+  #gate input { width:100%; padding:11px 14px; font-size:16px; letter-spacing:2px; text-align:center;
+                border:2px solid var(--border); border-radius:8px; outline:none; }
+  #gate input:focus { border-color:var(--orange); }
+  #gate .err { color:#D64545; font-size:13px; margin-top:10px; min-height:18px; }
+  #gate .btn { width:100%; margin-top:12px; }
+  .locked { display:none; }
 </style>
 </head>
 <body>
+
+<div id="gate">
+  <div class="box">
+    <h1>🔒 OC2 关卡在线站</h1>
+    <p>此站点需要授权访问，请输入访问密钥</p>
+    <input id="key-input" type="password" placeholder="访问密钥" autocomplete="off">
+    <div class="err" id="gate-err"></div>
+    <button class="btn" id="gate-btn">进入网站</button>
+  </div>
+</div>
+
+<div id="main" class="locked">
 <header>
   <div class="wrap">
     <h1>OC2 关卡在线站</h1>
@@ -74,29 +100,68 @@
     OC2 关卡在线站 · 自制关卡均来自各关卡作者，仅供学习交流使用
   </div>
 </div>
+</div>
 
 <script>
-const BASE = location.origin + location.pathname.replace(/[^/]*$/, '');
-document.getElementById('site-url').textContent = BASE.replace(/\/$/, '');
+const SITE_KEY = 'ZMBJ12U5';
+const STORE_KEY = 'oc2_site_auth_v1';
 
-fetch('api/levels.json').then(r => r.json()).then(data => {
-  const levels = (data.levels || []).slice().sort((a, b) => (a.name || '').localeCompare(b.name || '', 'zh'));
-  document.getElementById('lv-count').textContent = levels.length;
-  let html = '<table><tr><th>关卡</th><th>版本</th><th>大小</th><th>下载</th></tr>';
-  for (const lv of levels) {
-    const mb = (lv.size / 1048576).toFixed(1);
-    const url = BASE + lv.download_path;
-    html += `<tr><td class="name">${escapeHtml(lv.name)}</td><td class="ver">${escapeHtml(lv.version || '—')}</td><td class="size">${mb} MB</td><td><a class="dl" href="${url}" download>下载 zip</a></td></tr>`;
+const gate = document.getElementById('gate');
+const main = document.getElementById('main');
+
+function tryUnlock(k) {
+  if (k === SITE_KEY) {
+    try { localStorage.setItem(STORE_KEY, SITE_KEY); } catch (e) {}
+    gate.style.display = 'none';
+    main.classList.remove('locked');
+    return true;
   }
-  html += '</table>';
-  document.getElementById('list').innerHTML = html;
-}).catch(e => {
-  document.getElementById('list').innerHTML = '<span style="color:#D64545">关卡清单加载失败：' + escapeHtml(String(e)) + '</span>';
-});
+  return false;
+}
 
-fetch('api/software.json').then(r => r.json()).then(d => {
-  document.getElementById('sw-ver').textContent = d.version || '—';
-}).catch(() => {});
+let authed = false;
+try { authed = localStorage.getItem(STORE_KEY) === SITE_KEY; } catch (e) {}
+if (authed) {
+  gate.style.display = 'none';
+  main.classList.remove('locked');
+} else {
+  document.getElementById('gate-btn').addEventListener('click', function () {
+    const v = document.getElementById('key-input').value.trim();
+    if (!tryUnlock(v)) {
+      document.getElementById('gate-err').textContent = '密钥错误，无法进入';
+      document.getElementById('key-input').value = '';
+    }
+  });
+  document.getElementById('key-input').addEventListener('keydown', function (e) {
+    if (e.key === 'Enter') document.getElementById('gate-btn').click();
+  });
+}
+
+if (!authed && main.classList.contains('locked')) {
+  // 未授权：不加载任何站内内容
+} else {
+  const BASE = location.origin + location.pathname.replace(/[^/]*$/, '');
+  document.getElementById('site-url').textContent = BASE.replace(/\/$/, '');
+
+  fetch('api/levels.json').then(r => r.json()).then(data => {
+    const levels = (data.levels || []).slice().sort((a, b) => (a.name || '').localeCompare(b.name || '', 'zh'));
+    document.getElementById('lv-count').textContent = levels.length;
+    let html = '<table><tr><th>关卡</th><th>版本</th><th>大小</th><th>下载</th></tr>';
+    for (const lv of levels) {
+      const mb = (lv.size / 1048576).toFixed(1);
+      const url = BASE + lv.download_path;
+      html += `<tr><td class="name">${escapeHtml(lv.name)}</td><td class="ver">${escapeHtml(lv.version || '—')}</td><td class="size">${mb} MB</td><td><a class="dl" href="${url}" download>下载 zip</a></td></tr>`;
+    }
+    html += '</table>';
+    document.getElementById('list').innerHTML = html;
+  }).catch(e => {
+    document.getElementById('list').innerHTML = '<span style="color:#D64545">关卡清单加载失败：' + escapeHtml(String(e)) + '</span>';
+  });
+
+  fetch('api/software.json').then(r => r.json()).then(d => {
+    document.getElementById('sw-ver').textContent = d.version || '—';
+  }).catch(() => {});
+}
 
 function escapeHtml(s) {
   return String(s).replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
