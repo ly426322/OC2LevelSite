@@ -1,6 +1,6 @@
 {
-  "version": "2.18",
-  "size": 26753731,
+  "version": "2.19",
+  "size": 26753516,
   "name": "OC2地图管理器.exe",
-  "update_note": "v2.18 修复已禁用关卡无法打开文件夹（改用 _disabled 路径）"
+  "update_note": "v2.19 窗口标题显示版本号（便于识别旧版），已禁用关卡打开文件夹走 _disabled 路径"
 }
