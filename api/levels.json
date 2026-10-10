@@ -215,11 +215,12 @@
       "id": "cotton_",
       "level_id": "cotton_",
       "folder_name": "36.cotton_v0.1.2",
-      "name": "36.cotton_v0.1.2",
-      "version": "v0.1.2",
-      "download_path": "levels/cotton_v0.1.2.zip",
-      "size": 5317048,
-      "update_note": ""
+      "name": "36.cotton_v0.3.7.3",
+      "version": "v0.3.7.3",
+      "download_path": "levels/cotton_v0.3.7.3.zip",
+      "size": 16550039,
+      "update_note": "更新到 v0.3.7.3",
+      "sha256": "a504acbb5c5ac549cb3cf1056628da6a154d307ef548b3c3a0e52e8ca0b3c58b"
     },
     {
       "id": "eon0",
@@ -409,6 +410,17 @@
       "version": "v0.1",
       "download_path": "levels/roco_v0.1.zip",
       "size": 18592761,
+      "update_note": ""
+    },
+    {
+      "id": "pear_",
+      "level_id": "pear_",
+      "folder_name": "pear6.0",
+      "name": "41.pear6.0 v6.0",
+      "version": "v6.0",
+      "download_path": "levels/pear_v6.0.zip",
+      "size": 37953109,
+      "sha256": "c78c7b1ee88712d797e6a18ebf8d8a2f1d88dfac447ec9ea245d975ba7e47453",
       "update_note": ""
     }
   ]
