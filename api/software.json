@@ -1,6 +1,6 @@
 {
-  "version": "2.16",
-  "size": 26753709,
+  "version": "2.17",
+  "size": 26753731,
   "name": "OC2地图管理器.exe",
-  "update_note": "v2.16 修复已是最新关卡仍显示\"有更新\"（pear6.0 版本解析兜底）"
+  "update_note": "v2.17 修复预览图重复（同图 Texture2D/Sprite 去重）"
 }
