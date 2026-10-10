@@ -1,6 +1,6 @@
 {
-  "version": "2.17",
+  "version": "2.18",
   "size": 26753731,
   "name": "OC2地图管理器.exe",
-  "update_note": "v2.17 修复预览图重复（同图 Texture2D/Sprite 去重）"
+  "update_note": "v2.18 修复已禁用关卡无法打开文件夹（改用 _disabled 路径）"
 }
