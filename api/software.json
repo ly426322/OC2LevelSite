@@ -1,6 +1,6 @@
 {
-  "version": "2.23",
-  "size": 26774697,
+  "version": "2.24",
+  "size": 26774802,
   "name": "OC2地图管理器.exe",
-  "update_note": "v2.23 上传功能优化：英文ID自动匹配网站查重，bat 支持任意位置运行"
+  "update_note": "v2.24 上传查重修复：兼容网站早期ID（pear_/cotton_等），自动识别已有关卡"
 }
