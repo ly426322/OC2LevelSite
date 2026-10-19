@@ -14,11 +14,11 @@
     {
       "id": "rw",
       "level_id": "rw",
-      "folder_name": "10.Rick — Wang — rw v0.62",
-      "name": "10.Rick — Wang — rw",
-      "version": "v0.62",
-      "download_path": "levels/rw_v0.62.zip",
-      "size": 5840535,
+      "folder_name": "10.rw_v0.70",
+      "name": "10.rw",
+      "version": "v0.70",
+      "download_path": "levels/rw_v0.70.zip",
+      "size": 10048158,
       "update_note": ""
     },
     {
@@ -84,11 +84,11 @@
     {
       "id": "fruit",
       "level_id": "fruit",
-      "folder_name": "17.甜双脑袋 — fruit v2.0",
+      "folder_name": "17.甜双脑袋 — fruit v4.0",
       "name": "17.甜双脑袋 — fruit",
-      "version": "v2.0",
-      "download_path": "levels/fruit_v2.0.zip",
-      "size": 9811028,
+      "version": "v4.0",
+      "download_path": "levels/fruit_v4.0.zip",
+      "size": 11604660,
       "update_note": ""
     },
     {
@@ -335,11 +335,11 @@
     {
       "id": "summer_feast",
       "level_id": "summer_feast",
-      "folder_name": "38.夏日盛宴 v6.0",
-      "name": "38.夏日盛宴",
-      "version": "v6.0",
-      "download_path": "levels/summer_feast_v6.0.zip",
-      "size": 37953109,
+      "folder_name": "夏日盛宴v7.5",
+      "name": "夏日盛宴",
+      "version": "v7.5",
+      "download_path": "levels/夏日盛宴_v7.5.zip",
+      "size": 46000514,
       "sha256": "c78c7b1ee88712d797e6a18ebf8d8a2f1d88dfac447ec9ea245d975ba7e47453",
       "update_note": ""
     },
@@ -356,11 +356,11 @@
     {
       "id": "daidai",
       "level_id": "daidai",
-      "folder_name": "6.呆呆喵 v9.0.9",
+      "folder_name": "6.呆呆喵 v9.1.5",
       "name": "6.呆呆喵",
-      "version": "v9.0.9",
-      "download_path": "levels/daidai_v9.0.9.zip",
-      "size": 45929213,
+      "version": "v9.1.5",
+      "download_path": "levels/呆呆喵_v9.1.5.zip",
+      "size": 45927285,
       "update_note": ""
     },
     {
@@ -412,6 +412,26 @@
       "version": "v0.10",
       "download_path": "levels/music_feast_v0.10.zip",
       "size": 47606304,
+      "update_note": ""
+    },
+    {
+      "id": "shengdian",
+      "level_id": "shengdian",
+      "folder_name": "shengdian_v0.1",
+      "name": "shengdian",
+      "version": "v0.1",
+      "download_path": "levels/shengdian_v0.1.zip",
+      "size": 4069136,
+      "update_note": ""
+    },
+    {
+      "id": "宜了",
+      "level_id": "宜了",
+      "folder_name": "宜了2.0",
+      "name": "宜了",
+      "version": "v2.0",
+      "download_path": "levels/宜了_v2.0.zip",
+      "size": 7799041,
       "update_note": ""
     }
   ]
